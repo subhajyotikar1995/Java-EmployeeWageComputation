@@ -1,37 +1,43 @@
 import java.util.Random;
 
 public class EmpWageComp {
-    public static void main(String[] args){
-   
-        int wagePerHour=20;
-        int fullDayHours=8;
-        int halfDayHours=4;
-        int workingDays=20;
-        int totalWorkingHours=0;
+  
+    static int wagePerHour = 20, day = 1;
+    static int fullDayHours = 8, halfDayHours = 4, totalWorkingHours = 0;
 
-        for (int i=0; i<workingDays; i++) {
-      
-            Random ran = new Random();
-            int ran1 = ran.nextInt(3);
-
-        
-            if (ran1 == 0) {
-                totalWorkingHours += fullDayHours;
-            } else if (ran1 == 1) {
-                totalWorkingHours += halfDayHours;
-            } else {
-                totalWorkingHours += 0;
-            }
-        
-            if (totalWorkingHours > 100) {
-                totalWorkingHours = 100;
-                break;
-            }
+    public static void main(String[] args) {
+        EmpWageComp emp = new EmpWageComp();
+        emp.days();
+    
+        if (totalWorkingHours > 100) {
+            totalWorkingHours = 100;
         }
-     
-        int totalMonthlyWage=totalWorkingHours * wagePerHour;
-        System.out.println("Total Working Hours : " + totalWorkingHours );
+        emp.totalWage();
+    }
+
+ 
+    public void totalWage() {
+        int totalMonthlyWage = totalWorkingHours * wagePerHour;
+        System.out.println("Total Working Hours : " + totalWorkingHours);
         System.out.println("Total Wage : " + totalMonthlyWage);
+    }
+
+    public void days() {
+        
+        Random ran = new Random();
+        int ran1 = ran.nextInt(3);
+
+  
+        if (ran1 == 0) {
+            totalWorkingHours += fullDayHours;
+        } else if (ran1 == 1) {
+            totalWorkingHours += halfDayHours;
+        }
+        day += 1;
+        if (day <= 20) {
+            EmpWageComp emp = new EmpWageComp();
+            emp.days();
+        }
     }
 }
 
